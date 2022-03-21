@@ -8,45 +8,43 @@ import matplotlib.pyplot as plt
 def unscaled_page_rank(N_matrix):
     print("Unscaled Page Rank")
 
-    r_vector = np.full((18, 1), 1/18)
-    # print(r_vector)
-    iter_1 = np.linalg.matrix_power(N_matrix.transpose(), 1)
-    iter_2 = np.linalg.matrix_power(N_matrix.transpose(), 2)
-    iter_3 = np.linalg.matrix_power(N_matrix.transpose(), 3)
-    iter_4 = np.linalg.matrix_power(N_matrix.transpose(), 4)
-    iter_5 = np.linalg.matrix_power(N_matrix.transpose(), 5)
-    page_rank_1 = np.matmul(iter_1, r_vector)
-    page_rank_2 = np.matmul(iter_2, r_vector)
-    page_rank_3 = np.matmul(iter_3, r_vector)
-    page_rank_4 = np.matmul(iter_4, r_vector)
-    page_rank_5 = np.matmul(iter_5, r_vector)
-    print(page_rank_1)
-    print(page_rank_2)
-    print(page_rank_3)
-    print(page_rank_4)
-    print(page_rank_5)
+    r_vector = np.full((18, 1), 1 / 18)
+    k = 1
+    iter_1 = np.linalg.matrix_power(N_matrix.transpose(), k)
+    k = k + 1
+    iter_2 = np.linalg.matrix_power(N_matrix.transpose(), k)
+    k = k + 1
+    prev_page_rank = np.matmul(iter_1, r_vector)
+    curr_page_rank = np.matmul(iter_2, r_vector)
+    while not np.allclose(prev_page_rank, curr_page_rank):
+        iter_1 = np.linalg.matrix_power(N_matrix.transpose(), k)
+        k = k + 1
+        prev_page_rank = curr_page_rank
+        curr_page_rank = np.matmul(iter_1, r_vector)
+    print(k-1)
+    print(np.sum(curr_page_rank))
+    print(curr_page_rank)
 
 
 def scaled_page_rank(N_hat_matrix):
     print("Scaled Page Rank")
 
     r_vector = np.full((18, 1), 1 / 18)
-    # print(r_vector)
-    iter_1 = np.linalg.matrix_power(N_hat_matrix.transpose(), 1)
-    iter_2 = np.linalg.matrix_power(N_hat_matrix.transpose(), 2)
-    iter_3 = np.linalg.matrix_power(N_hat_matrix.transpose(), 3)
-    iter_4 = np.linalg.matrix_power(N_hat_matrix.transpose(), 4)
-    iter_5 = np.linalg.matrix_power(N_hat_matrix.transpose(), 5)
-    page_rank_1 = np.matmul(iter_1, r_vector)
-    page_rank_2 = np.matmul(iter_2, r_vector)
-    page_rank_3 = np.matmul(iter_3, r_vector)
-    page_rank_4 = np.matmul(iter_4, r_vector)
-    page_rank_5 = np.matmul(iter_5, r_vector)
-    print(page_rank_1)
-    print(page_rank_2)
-    print(page_rank_3)
-    print(page_rank_4)
-    print(page_rank_5)
+    k = 1
+    iter_1 = np.linalg.matrix_power(N_hat_matrix.transpose(), k)
+    k = k + 1
+    iter_2 = np.linalg.matrix_power(N_hat_matrix.transpose(), k)
+    k = k + 1
+    prev_page_rank = np.matmul(iter_1, r_vector)
+    curr_page_rank = np.matmul(iter_2, r_vector)
+    while not np.allclose(prev_page_rank, curr_page_rank):
+        iter_1 = np.linalg.matrix_power(N_hat_matrix.transpose(), k)
+        k = k + 1
+        prev_page_rank = curr_page_rank
+        curr_page_rank = np.matmul(iter_1, r_vector)
+    print(k - 1)
+    print(np.sum(curr_page_rank))
+    print(curr_page_rank)
 
 
 def page_rank(s):
@@ -83,13 +81,12 @@ def page_rank(s):
         if row_sum == 0:
             N_matrix[idx][idx] = 1
         else:
-            N_matrix[idx] = N_matrix[idx]/divide
+            N_matrix[idx] = N_matrix[idx] / divide
             N_matrix[np.isnan(N_matrix)] = 0
         N_hat_matrix[idx] = N_matrix[idx]
         # print(N_matrix[idx])
         N_hat_matrix[idx] = (s * N_hat_matrix[idx]) + ((1 - s) / 18)
         # print(N_hat_matrix[idx])
-
     unscaled_page_rank(N_matrix)
     scaled_page_rank(N_hat_matrix)
 
