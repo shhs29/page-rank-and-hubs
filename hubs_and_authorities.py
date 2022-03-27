@@ -34,6 +34,8 @@ def draw_graph_from(adj_matrix):
 
 
 if __name__ == '__main__':
+    # original network
+    print("Original network")
     adj_matrix_q1 = np.array([[0, 0, 0, 0, 0, 0, 0],
                               [0, 0, 0, 0, 0, 0, 0],
                               [1, 0, 0, 0, 0, 0, 0],
@@ -41,5 +43,44 @@ if __name__ == '__main__':
                               [1, 1, 0, 0, 0, 0, 0],
                               [0, 1, 0, 0, 0, 0, 1],
                               [0, 0, 0, 0, 0, 0, 0]])
-    draw_graph_from(adj_matrix_q1)
+    # draw_graph_from(adj_matrix_q1)
     calculate_hubs_authorities_value(adj_matrix_q1, 2)
+
+    # modified network 1
+    print("Modified network 1")
+    adj_matrix_q2 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 1, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 1, 0, 0, 0, 0, 1, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 1, 0]])
+    calculate_hubs_authorities_value(adj_matrix_q2, 2)
+
+    # modified network 2
+    print("Modified network 2")
+    adj_matrix_q3 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 1, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 1, 0, 0, 0, 0, 1, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 1, 0]])
+    calculate_hubs_authorities_value(adj_matrix_q3, 2)
+
+    # modified network 3
+    print("Modified network 3")
+    adj_matrix_q4 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 1, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 1, 0, 0, 0, 0, 1, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [1, 1, 0, 0, 0, 0, 1, 1, 0]])
+    calculate_hubs_authorities_value(adj_matrix_q4, 2)
