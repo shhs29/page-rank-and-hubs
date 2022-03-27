@@ -16,7 +16,13 @@ def unscaled_page_rank(N_matrix):
     k = k + 1
     prev_page_rank = np.matmul(iter_1, r_vector)
     curr_page_rank = np.matmul(iter_2, r_vector)
-    while not np.allclose(prev_page_rank, curr_page_rank):
+    print("After Iteration 1")
+    print(prev_page_rank)
+    print("After Iteration 2")
+    print(curr_page_rank)
+    print("After Iteration 3")
+    print(np.matmul(np.linalg.matrix_power(N_matrix.transpose(), 3), r_vector))
+    while not (prev_page_rank == curr_page_rank).all():
         iter_1 = np.linalg.matrix_power(N_matrix.transpose(), k)
         k = k + 1
         prev_page_rank = curr_page_rank
